@@ -5,7 +5,8 @@ TOKEN = os.environ["HF_TOKEN"]
 SPACE = "imanandshah/engine-maintenance-app"
 
 api = HfApi(token=TOKEN)
-api.create_repo(SPACE, repo_type="space", space_sdk="docker", exist_ok=True)
+# NOTE: the Space already exists (grandfathered free Docker Space), so we do NOT
+# call create_repo — creating a new Docker Space now requires PRO. We only push files.
 for local, remote in [("space/app.py", "app.py"),
                       ("space/preprocessing.py", "preprocessing.py"),
                       ("space/requirements.txt", "requirements.txt"),
